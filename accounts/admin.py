@@ -5,7 +5,7 @@ from .models import Admin, Author, User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "problems_solved", "total_points", "created_at")
+    list_display = ("id", "name", "problems_solved", "total_points", "authorDetails", "created_at")
     search_fields = ("name",)
     list_filter = ("created_at",)
     ordering = ("-total_points", "name")
@@ -23,12 +23,8 @@ class AuthorAdmin(admin.ModelAdmin):
         "id",
         "name",
         "user",
-        "problems_added",
-        "status",
-        "reviewed_by",
-        "reviewed_at",
+        "problems_added"
     )
-    list_filter = ("status",)
     search_fields = ("name", "user__name")
-    autocomplete_fields = ("user", "reviewed_by")
+    autocomplete_fields = ("user",)
     readonly_fields = ("created_at",)
